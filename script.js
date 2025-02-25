@@ -99,32 +99,34 @@ function handleEqualsClick() {
 }
 
 function populateScreen(element) {
-  const newValueisA = (!operandA);
-  const newValueisB = (operandA && operator && !operandB);
-  const newValueComes = (display.textContent == NO_CONTENT || newValueisB);
-  const valueisA = (operandA && !operator && !operandB);
-  const valueisB = (operandA && operator && operandB);
+  if (display.textContent.length <= 8) {
+    const newValueisA = (!operandA);
+    const newValueisB = (operandA && operator && !operandB);
+    const newValueComes = (display.textContent == NO_CONTENT || newValueisB);
+    const valueisA = (operandA && !operator && !operandB);
+    const valueisB = (operandA && operator && operandB);
 
-  const value = element.textContent;
+    const value = element.textContent;
 
-  if (newValueComes) {
-    setDisplayTo(value);
-    if (newValueisA) {
-      operandA = value;
+    if (newValueComes) {
+      setDisplayTo(value);
+      if (newValueisA) {
+        operandA = value;
+      }
+      else if (newValueisB) {
+        operandB = value;
+      }
     }
-    else if (newValueisB) {
-      operandB = value;
+    else {
+      if (valueisA) {
+        operandA += value;
+        setDisplayTo(operandA);
+      }
+      else if (valueisB) {
+        operandB += value;
+        setDisplayTo(operandB);
+      }  
     }
-  }
-  else {
-    if (valueisA) {
-      operandA += value;
-      setDisplayTo(operandA);
-    }
-    else if (valueisB) {
-      operandB += value;
-      setDisplayTo(operandB);
-    }  
   }
 }
 

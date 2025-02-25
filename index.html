@@ -4,43 +4,46 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Catculator</title>
+  <link href="https://fonts.cdnfonts.com/css/calculator" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 <body>
-  <div class="calculator">
-    <div class="calculator__display"> 
-      
-    </div>
-    <div class="calculator__body"> 
-      <div class="body__row">
-        <button id="clear" class="action">AC</button>
-        <button id="sign" class="action">+/-</button>
-        <button id="percentage" class="action">%</button>
-        <button id="divition" class="operation">/</button>
+  <div class="content"> 
+    <img class="background-cat" src="images/gruvbox_jani.png" alt="cat behind a calculator">
+    <div class="calculator">
+      <div class="calculator__display .truncate"> 
       </div>
-      <div class="body__row">
-        <button id="seven">7</button>
-        <button id="eight">8</button>
-        <button id="nine">9</button>
-        <button id="multiplication" class="operation">*</button>
-      </div>
-      <div class="body__row">
-        <button id="four">4</button>
-        <button id="five">5</button>
-        <button id="six">6</button>
-        <button id="subtraction" class="operation">-</button>
-      </div>
-      <div class="body__row">
-        <button id="one">1</button>
-        <button id="two">2</button>
-        <button id="three">3</button>
-        <button id="adition" class="operation">+</button>
-      </div>
-      <div class="body__row">
-        <button id="zero">0</button>
-        <button id="dot">.</button>
-        <button id="equals" class="equals">=</button>
+      <div class="calculator__body"> 
+        <div class="body__row">
+          <button id="clear" class="action">AC</button>
+          <button id="sign" class="action">+/-</button>
+          <button id="percentage" class="action">%</button>
+          <button id="divition" class="operation">/</button>
+        </div>
+        <div class="body__row">
+          <button id="seven" class="number">7</button>
+          <button id="eight" class="number">8</button>
+          <button id="nine" class="number">9</button>
+          <button id="multiplication" class="operation">*</button>
+        </div>
+        <div class="body__row">
+          <button id="four" class="number">4</button>
+          <button id="five" class="number">5</button>
+          <button id="six" class="number">6</button>
+          <button id="subtraction" class="operation">-</button>
+        </div>
+        <div class="body__row">
+          <button id="one" class="number">1</button>
+          <button id="two" class="number">2</button>
+          <button id="three" class="number">3</button>
+          <button id="adition" class="operation">+</button>
+        </div>
+        <div class="body__row">
+          <button id="zero" class="number">0</button>
+          <button id="dot">.</button>
+          <button id="equals" class="equals">=</button>
+        </div>
       </div>
     </div>
   </div>
