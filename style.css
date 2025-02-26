@@ -32,7 +32,7 @@ body {
 }
 
 .background-cat {
-  height: 550px;
+  height: 750px;
   width: auto;
   position: absolute;
   z-index: -1;
@@ -72,6 +72,10 @@ body {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+
+.inclined {
+  transform: rotate(-5deg);
 }
 
 button {
