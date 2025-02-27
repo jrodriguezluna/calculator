@@ -8,8 +8,6 @@ function handleOperator(element) {
 }
 
 function handleEquals() {
-  console.log(operandA);
-  console.log(operandB);
   if (!operator && !operandB) return; // do nothing
   
   let a = operandA;
@@ -17,12 +15,24 @@ function handleEquals() {
   let result = (utils.isDecimal(a) || utils.isDecimal(b))
     ? utils.operateFloats(operator, a, b) 
     : utils.operate(operator, a, b);
-  if (result === "Infinity" || result === "NaN") result = "HISS"; // divisions with 0
 
   operandA = result.toString();
   operandB = operator = null;
-  clearOperandDisplay();
-  setDisplayTo(operandA);
+  clearOperatorDisplay();
+  if (operandA.length > MAX_DIGITS) {
+    let resultExponential = result.toExponential(7).split("");
+    let number = resultExponential.slice(0, resultExponential.indexOf("e")).join("")
+    let notation = resultExponential.slice(resultExponential.indexOf("e")).join("")
+    setDisplayTo(number);
+    setExponentDisplayTo(notation);
+  }
+  else {
+    clearExponentDisplay();
+    if (result === Infinity || isNaN(result)) setDisplayTo("HISS"); // divisions with 0
+    else {
+      setDisplayTo(operandA);
+    }
+  }
 }
 
 function populateScreen(element) {
@@ -53,11 +63,16 @@ function populateScreen(element) {
 function handleClear() {
   setDisplayTo(NO_CONTENT);
   operandA = operandB = operator = null;
-  clearOperandDisplay();
+  clearOperatorDisplay();
+  clearExponentDisplay();
 }
 
-function clearOperandDisplay() {
-  displayOperandsList.forEach((el) => el.style.color = "#505050");
+function clearOperatorDisplay() {
+  operandsListDisplay.forEach((el) => el.style.color = "#505050");
+}
+
+function clearExponentDisplay() {
+  exponentDisplay.textContent = "";
 }
 
 function handleSign() {
@@ -81,7 +96,6 @@ function handleDot(operand="ERROR") {
       operand = operandA = (operandA) ? operandA + "." : "0.";}
     else operand = operandB = (operandB) ? operandB + "." : "0."; 
     setDisplayTo(operand);
-    console.log(operand)
   }
 }
 
@@ -89,8 +103,12 @@ function setDisplayTo(value) {
   display.textContent = value;
 }
 
+function setExponentDisplayTo(value) {
+  exponentDisplay.textContent = value;
+}
+
 function toggleOperatorDisplay(currentOperator) {
-  for (const el of displayOperandsList) {
+  for (const el of operandsListDisplay) {
     if (el.textContent === currentOperator) {
       el.style.color = "#000000";
     }
@@ -103,7 +121,8 @@ function toggleOperatorDisplay(currentOperator) {
 // calculator setup ///////////////////////////////////////////////////////////
 const display = document.querySelector(".display__numbers");
 const calculatorBody = document.querySelector(".calculator__body");
-const displayOperandsList = [...document.querySelectorAll("li")].slice(0, -1);
+const operandsListDisplay = [...document.querySelectorAll("li")].slice(0, -1);
+const exponentDisplay = document.querySelector(".exponent-display");
 
 let operandA, operandB, operator = null;
 const MAX_DIGITS = 8;

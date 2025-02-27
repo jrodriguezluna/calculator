@@ -95,8 +95,8 @@ li {
   transform: rotate(-5deg);
 }
 
-.space-left {
-  margin-left: 38%;
+.black {
+  color: #000000;
 }
 
 button {
