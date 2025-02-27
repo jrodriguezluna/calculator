@@ -4,9 +4,12 @@ function handleOperator(element) {
   // we add an operator or replace it.
   operator = element.textContent;
   if (!operandA) operandA = NO_CONTENT;
+  toggleOperatorDisplay(element.textContent)
 }
 
 function handleEquals() {
+  console.log(operandA);
+  console.log(operandB);
   if (!operator && !operandB) return; // do nothing
   
   let a = operandA;
@@ -18,6 +21,7 @@ function handleEquals() {
 
   operandA = result.toString();
   operandB = operator = null;
+  clearOperandDisplay();
   setDisplayTo(operandA);
 }
 
@@ -30,7 +34,9 @@ function populateScreen(element) {
     setDisplayTo(value);
   } // value is either added to A or B
   else {
-    if (display.textContent.length <= MAX_DIGITS) {
+    if (display.textContent.length < MAX_DIGITS + 
+      (display.textContent.includes(".") ? 1 : 0) +
+      (display.textContent.includes("-") ? 1 : 0)) {
       if (operandA && !operator && !operandB) {
         operandA += value;
         value = operandA;
@@ -47,6 +53,11 @@ function populateScreen(element) {
 function handleClear() {
   setDisplayTo(NO_CONTENT);
   operandA = operandB = operator = null;
+  clearOperandDisplay();
+}
+
+function clearOperandDisplay() {
+  displayOperandsList.forEach((el) => el.style.color = "#505050");
 }
 
 function handleSign() {
@@ -70,6 +81,7 @@ function handleDot(operand="ERROR") {
       operand = operandA = (operandA) ? operandA + "." : "0.";}
     else operand = operandB = (operandB) ? operandB + "." : "0."; 
     setDisplayTo(operand);
+    console.log(operand)
   }
 }
 
@@ -77,9 +89,21 @@ function setDisplayTo(value) {
   display.textContent = value;
 }
 
+function toggleOperatorDisplay(currentOperator) {
+  for (const el of displayOperandsList) {
+    if (el.textContent === currentOperator) {
+      el.style.color = "#000000";
+    }
+    else {
+      el.style.color = "#505050";
+    }
+  }
+}
+
 // calculator setup ///////////////////////////////////////////////////////////
-const display = document.querySelector(".calculator__display");
+const display = document.querySelector(".display__numbers");
 const calculatorBody = document.querySelector(".calculator__body");
+const displayOperandsList = [...document.querySelectorAll("li")].slice(0, -1);
 
 let operandA, operandB, operator = null;
 const MAX_DIGITS = 8;

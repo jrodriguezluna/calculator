@@ -13,7 +13,8 @@ function turnFloatToInt(float, decimals) {
   return float * (Math.pow(10, decimals));
 }
 
-function turnIntToFloat(int, decimals) {
+function turnIntToFloat(int, decimals, operator) {
+  if ("+-".includes(operator)) return int / (Math.pow(10, decimals));
   return int / (Math.pow(10, decimals + 1));
 }
 
@@ -41,5 +42,5 @@ export function operateFloats(operator, numA, numB) {
   const decimals = Math.max(countDecimals(numA), countDecimals(numB));
   numA = turnFloatToInt(numA, decimals);
   numB = turnFloatToInt(numB, decimals);
-  return turnIntToFloat(operate(operator, numA, numB), decimals);
+  return turnIntToFloat(operate(operator, numA, numB), decimals, operator);
 }

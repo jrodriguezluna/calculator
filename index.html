@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Catculator</title>
-  <link href="https://fonts.cdnfonts.com/css/calculator" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/biggipsybro" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/digital-7-mono" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="main.js" type="module" defer></script>
 </head>
@@ -12,7 +13,16 @@
   <div class="content"> 
     <img class="background-cat" src="images/gruvbox_jani.png" alt="cat behind a calculator">
     <div class="calculator inclined">
-      <div class="calculator__display .truncate"> 
+      <div class="calculator__display">
+        <ul class="display__operands">
+          <li>+</li>
+          <li>-</li>
+          <li>/</li>
+          <li>*</li>
+          <li class="space-left">cat</li>
+        </ul>
+        <div class="display__numbers">
+        </div>
       </div>
       <div class="calculator__body"> 
         <div class="body__row">

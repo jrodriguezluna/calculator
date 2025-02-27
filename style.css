@@ -1,5 +1,6 @@
 body,
-html {
+html,
+ul {
   margin: 0;
   padding: 0;
   /* filter: brightness(90%); */
@@ -18,17 +19,22 @@ body {
   background-color: #3c3836;
 }
 
+li {
+  font-family: 'BIG_GIPSY_BRO', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: #505050;
+  height: 12px;
+  width: 12px;
+  text-align: center;
+}
+
 .content {
   display: flex;
   /* justify-content centers .background-cat */
   justify-content: center;
   /* here, align-items does something, as it moves items within heigh 100vh*/
   align-items: center;
-}
-
-.calculator__display {
-  color: #ebdbb2;
-  text-align: right;
 }
 
 .background-cat {
@@ -49,16 +55,33 @@ body {
 }
 
 .calculator__display {
-  width: 149px;
+  text-align: right;
+  width: 100%;
   margin-bottom: 5px;
   border-radius: 1%;
   border: inset 2px black;
-  font-size: 35px;
-  font-family: 'Calculator', sans-serif;
-  font-weight: 800;
+  /* overflow-x: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #282828 #79740e; */
+  font-size: 45px;
+  font-family: 'Digital-7 Mono', sans-serif;
+  font-weight: 500;
   background-color: #79740e;
   color: #282828;
   box-shadow: 0px 0px 20px #000000;
+}
+
+.display__operands {
+  list-style: none;
+  display: flex;
+  justify-content: left;
+  gap: 4%;
+  padding: 0px 5px;
+  padding-bottom:10px;
+}
+
+.display__numbers {
+  padding-bottom: 18px;
 }
 
 .body__row {
@@ -68,22 +91,21 @@ body {
   margin-bottom: 2px;
 }
 
-.truncate {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
 .inclined {
   transform: rotate(-5deg);
 }
 
+.space-left {
+  margin-left: 38%;
+}
+
 button {
-  height: 35px;
-  width: 35px;
+  height: 50px;
+  width: 50px;
   border-radius: 15%;
   background-color: #282828;
   color: #bdae93;
+  font-size: medium;
 }
 
 button.number,
@@ -92,7 +114,7 @@ button#dot {
 }
 
 button#zero {
-  width: 70px;
+  width: 100px;
 }
 
 button#clear {
